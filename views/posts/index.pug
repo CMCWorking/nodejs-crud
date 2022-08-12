@@ -1,0 +1,30 @@
+extends ../components/layout
+
+block action_button
+	.btn-toolbar.mb-2.mb-md-0
+	.btn-group.me-2
+		button.btn.btn-sm.btn-primary(type='button') Create new Post
+
+block content
+	table.table
+		thead
+			tr
+				th(scope='col') #
+				th(scope='col') Title
+				th(scope='col') Slug
+				th(scope='col') Category
+				th(scope='col') Created at
+				th(scope='col') Updated at
+				th(scope='col') 
+		- var n = 1
+		tbody.table-group-divider
+			while n < 20
+				tr
+					th(scope='row')= n++
+					td= "Post title"
+					td= "Post slug"
+					td= "Post Category"
+					td= "Created at"
+					td= "Updated at"
+					td.text-end
+						button.btn.btn-sm.btn-primary(type='button') Edit
