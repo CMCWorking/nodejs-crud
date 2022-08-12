@@ -1,4 +1,9 @@
-extends components/layout
+extends ../components/layout
+
+block action_button
+	.btn-toolbar.mb-2.mb-md-0
+	.btn-group.me-2
+		button.btn.btn-sm.btn-primary(type='button') Create new User
 
 block content
 	table.table
