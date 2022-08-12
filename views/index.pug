@@ -1,0 +1,26 @@
+doctype html
+html(lang='en')
+	head
+	title CRUD index
+	body
+	#container.col
+		form(action="/search", method="GET")
+		input(name="id", type="text", placeholder="Id")
+		button Search
+		
+		.posts
+			head
+				style.
+					table,th,td {
+						border: 1px solid black;
+					}
+			table
+				thead
+					tr
+						th Id
+						th Title
+				tbody
+				each post in posts
+					tr
+						td= post.id
+						td= post.title
