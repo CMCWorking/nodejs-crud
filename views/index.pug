@@ -1,26 +1,27 @@
-doctype html
-html(lang='en')
-	head
-	title CRUD index
-	body
-	#container.col
-		form(action="/search", method="GET")
-		input(name="id", type="text", placeholder="Id")
-		button Search
-		
-		.posts
-			head
-				style.
-					table,th,td {
-						border: 1px solid black;
-					}
-			table
-				thead
-					tr
-						th Id
-						th Title
-				tbody
-				each post in posts
-					tr
-						td= post.id
-						td= post.title
+extends ../node_modules/pug-bootstrap/layouts/starter
+
+
+append body
+	.container
+		h1= title
+		p Welcome to #{title}
+		+alert-info("This is a sample info alert.")
+		+navbar("Project name","dropdown_menu")
+		+navbar("Project name","dropdown_menu","inverse")
+		+navbar("Project name","dropdown_menu")
+			+nav_item("index.html","active") Home
+			+nav_item("about.html") About
+			+nav_item("contact.html") Contact
+		+navbar("Project name","dropdown_menu")
+			+nav_item("index.html","active") Home
+			+nav_item("about.html") About
+			+nav_item("contact.html") Contact
+			+nav_item_dropdown("#")(label="Dropdown")
+				+nav_item("#") Action
+				+nav_item("#") Another Action
+				+nav_item("#") Something else here
+				+nav_divider
+				+nav_header Nav header
+				+nav_item("#") Separated link
+				+nav_item("#") One more separated link
+	h1 Rajasegar
