@@ -1,10 +1,23 @@
 const models = require("../models");
+const joi = require("joi");
 
 exports.createUser = async (req, res) => {
 	try {
-		const user = await models.User.create(req.body);
+		const data = req.body;
+		const schema = joi.object().keys({
+			name: joi.string().min(3).required(),
+			email: joi.string().email().required(),
+		});
+
+		const { error, value } = schema.validate(data);
+		if (error) {
+			return res.status(400).json({ error });
+		}
+
+		const user = models.User.create(req.body);
+
 		return res.status(201).json({
-			user,
+			message: "User created",
 		});
 	} catch (error) {
 		return res.status(500).json({ error: error.message });
@@ -40,9 +53,22 @@ exports.getUserById = async (req, res) => {
 exports.updateUser = async (req, res) => {
 	try {
 		const { userId } = req.params;
-		const [updated] = await models.User.update(req.body, {
+		const data = req.body;
+		const schema = joi.object().keys({
+			name: joi.string().min(3).required(),
+			email: joi.string().email().required(),
+		});
+
+		const { error, value } = schema.validate(data);
+
+		if (error) {
+			return res.status(400).json({ error });
+		}
+
+		const [updated] = await models.User.update(data, {
 			where: { id: userId },
 		});
+
 		if (updated) {
 			const updatedUser = await models.User.findOne({
 				where: { id: userId },
