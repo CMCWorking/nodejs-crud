@@ -4,13 +4,17 @@ const joi = require("joi");
 exports.createPost = async (req, res) => {
 	try {
 		const data = req.body;
+		console.log(data);
 		const schema = joi.object().keys({
-			title: joi.string().min(3).required(),
+			title: joi.string().required(),
 			slug: joi.string().required(),
+			category_id: joi.number().required(),
+			description: joi.string(),
 		});
 
 		const { error, value } = schema.validate(data);
 		if (error) {
+			console.log(error);
 			return res.status(400).json({ error });
 		}
 
@@ -57,6 +61,8 @@ exports.updatePost = async (req, res) => {
 		const schema = joi.object().keys({
 			title: joi.string().min(3).required(),
 			slug: joi.string().required(),
+			category_id: joi.number().required(),
+			description: joi.string(),
 		});
 
 		const { error, value } = schema.validate(data);
