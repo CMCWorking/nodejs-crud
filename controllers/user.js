@@ -83,7 +83,7 @@ exports.updateUser = async (req, res) => {
 	}
 };
 
-exports.deleteUsers = async (req, res) => {
+exports.deleteUser = async (req, res) => {
 	try {
 		const { userId } = req.params;
 		const deleted = await models.User.destroy({
